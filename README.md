@@ -56,6 +56,8 @@ npm run build
 
 ## ☁️ Cloudflare Pages 部署
 
+### 方法一：通过Cloudflare Pages控制台部署
+
 1. 将项目推送到GitHub仓库
 
 2. 在Cloudflare Pages中创建新项目，关联你的GitHub仓库
@@ -68,6 +70,45 @@ npm run build
 4. 点击部署，等待构建完成
 
 5. 部署成功后，你将获得一个Cloudflare Pages域名
+
+### 方法二：使用Wrangler CLI部署
+
+1. 安装Cloudflare Wrangler CLI
+```bash
+npm install -g wrangler
+```
+
+2. 登录Cloudflare账号
+```bash
+wrangler login
+```
+
+3. 在项目根目录创建`wrangler.toml`文件
+```toml
+name = "calendar-diary"
+type = "static_site"
+build.command = "npm run build"
+build.publish = "dist"
+compatibility_date = "2023-10-01"
+
+[build.upload]
+format = "service-worker"
+```
+
+4. 部署项目
+```bash
+wrangler deploy
+```
+
+### 自定义域名配置
+
+1. 在Cloudflare Pages项目设置中，点击"自定义域名"
+2. 添加你的域名（需先将域名DNS解析到Cloudflare）
+3. 按照提示完成SSL证书配置
+
+### 持续部署
+
+Cloudflare Pages会自动监听GitHub仓库变化，当你推送到主分支时，将自动触发新的构建和部署。
 
 ## ⚙️ 自定义配置
 
@@ -114,4 +155,4 @@ package.json     # 项目依赖
 - [Font Awesome](https://fontawesome.com/)
 - [date-fns](https://date-fns.org/)
 - [Vite](https://vitejs.dev/)
-"# Calendar-Diary" 
+"# Calendar-Diary"

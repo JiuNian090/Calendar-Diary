@@ -1,0 +1,8 @@
+name = "calendar-diary"
+type = "static_site"
+build.command = "npm run build"
+build.publish = "dist"
+compatibility_date = "2023-10-01"
+
+[build.upload]
+format = "service-worker"
