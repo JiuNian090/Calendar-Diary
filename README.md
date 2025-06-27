@@ -65,7 +65,7 @@ npm run build
 3. 配置构建设置：
    - **构建命令**: `npm run build`
    - **构建输出目录**: `dist`
-   - **环境变量**: 添加 `NODE_VERSION=18`
+   - **环境变量**: 添加 `NODE_VERSION=20`
 
 4. 点击部署，等待构建完成
 
