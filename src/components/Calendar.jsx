@@ -41,11 +41,11 @@ const Calendar = ({ selectedDate, onDateSelect, memos }) => {
   };
 
   return (
-    <div className="card p-5">
+    <div className="p-5 animate-fade-in">
       <div className="flex justify-between items-center mb-6">
         <button
           onClick={handlePrevMonth}
-          className="p-2 rounded-full hover:bg-neutral-100 transition-colors"
+          className="p-3 rounded-full hover:bg-neutral-100 transition-colors text-neutral-600 hover:text-primary"
           aria-label="上一个月"
         >
           <i className="fa fa-chevron-left"></i>
@@ -53,7 +53,7 @@ const Calendar = ({ selectedDate, onDateSelect, memos }) => {
         <h2 className="text-xl font-semibold text-neutral-900">{formatMonthTitle()}</h2>
         <button
           onClick={handleNextMonth}
-          className="p-2 rounded-full hover:bg-neutral-100 transition-colors"
+          className="p-3 rounded-full hover:bg-neutral-100 transition-colors text-neutral-600 hover:text-primary"
           aria-label="下一个月"
         >
           <i className="fa fa-chevron-right"></i>
@@ -63,7 +63,7 @@ const Calendar = ({ selectedDate, onDateSelect, memos }) => {
       {/* 星期标题行 */}
       <div className="grid grid-cols-7 mb-2">
         {['一', '二', '三', '四', '五', '六', '日'].map((day) => (
-          <div key={day} className="text-center py-2 text-sm font-medium text-neutral-500">
+          <div key={day} className="text-center py-3 text-sm font-medium text-neutral-500">
             {day}
           </div>
         ))}
@@ -75,11 +75,16 @@ const Calendar = ({ selectedDate, onDateSelect, memos }) => {
           <button
             key={format(date, 'yyyy-MM-dd')}
             onClick={() => onDateSelect(date)}
-            className={`calendar-day ${!isSameMonth(date, currentMonth) ? 'disabled' : ''} ${selectedDate && isSameDay(date, selectedDate) ? 'selected' : ''} ${hasMemo(date) ? 'has-memo' : ''}`}
+            className={`relative p-3 rounded-full text-center transition-all duration-200 hover:bg-neutral-100 ${!isSameMonth(date, currentMonth) ? 'text-neutral-300 cursor-default' : 'cursor-pointer hover:text-primary'} ${selectedDate && isSameDay(date, selectedDate) ? 'bg-primary-gradient text-white font-medium shadow-md' : ''}`}
             aria-label={`选择日期 ${format(date, 'yyyy年MM月dd日')}`}
             disabled={!isSameMonth(date, currentMonth)}
           >
-            <span>{date.getDate()}</span>
+            <> 
+  <span>{date.getDate()}</span>
+  {hasMemo(date) && (
+    <span className="absolute bottom-2 left-1/2 transform -translate-x-1/2 w-1.5 h-1.5 bg-primary rounded-full"></span>
+  )}
+</>
           </button>
         ))}
       </div>

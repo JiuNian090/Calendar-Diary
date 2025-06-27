@@ -47,31 +47,37 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-neutral-100 py-8 px-4 sm:px-6 lg:px-8 animate-fade-in">
       <div className="max-w-7xl mx-auto">
-        <header className="mb-8 text-center">
-          <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] font-bold text-neutral-900 mb-2">
-            <i className="fa fa-calendar-check-o text-primary mr-2"></i>日历备忘录
-          </h1>
-          <p className="text-neutral-500">记录你的重要日程和待办事项</p>
+        <header className="mb-8 text-center animate-slide-up">
+          <div className="inline-block bg-primary-gradient text-white px-6 py-3 rounded-xl mb-4 shadow-lg">
+            <i className="fa fa-calendar-check-o mr-2 text-xl"></i>
+            <h1 className="text-[clamp(1.8rem,4vw,2.5rem)] font-bold">日历备忘录</h1>
+          </div>
+          <p className="text-neutral-600 max-w-2xl mx-auto">轻松记录和管理你的重要日程、待办事项和个人笔记，让每一天都井井有条</p>
         </header>
 
         <main className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Calendar
-            selectedDate={selectedDate}
-            onDateSelect={setSelectedDate}
-            memos={memos}
-          />
-          <MemoEditor
-            selectedDate={selectedDate}
-            memos={memos}
-            onSaveMemo={saveMemo}
-            onDeleteMemo={deleteMemo}
-          />
+          <div className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden transform hover:-translate-y-1">
+            <Calendar
+              selectedDate={selectedDate}
+              onDateSelect={setSelectedDate}
+              memos={memos}
+            />
+          </div>
+          <div className="bg-white rounded-2xl shadow-card hover:shadow-card-hover transition-all duration-300 overflow-hidden transform hover:-translate-y-1">
+            <MemoEditor
+              selectedDate={selectedDate}
+              memos={memos}
+              onSaveMemo={saveMemo}
+              onDeleteMemo={deleteMemo}
+            />
+          </div>
         </main>
 
-        <footer className="mt-12 text-center text-neutral-500 text-sm">
-          <p>© {new Date().getFullYear()} 日历备忘录 | 使用React和Tailwind CSS构建</p>
+        <footer className="mt-12 text-center text-neutral-500 text-sm animate-slide-up">
+          <p className="mb-2">© {new Date().getFullYear()} 日历备忘录</p>
+          <p className="text-xs opacity-80">使用React和Tailwind CSS构建 | 本地数据安全存储</p>
         </footer>
       </div>
     </div>
